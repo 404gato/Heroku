@@ -16,6 +16,7 @@ public class BlogPessoalApplication {
 		return "<font size=+2>Olá! Bem vindo "
 				+ "</font><br><br> Clique <a href = \"/mental\">aqui</a> para ser redirecionado às minhas mentalidades"
 				+ "<br> Ou clique <a href = \"/obj\">aqui</a> para ser redirecionado aos meus objetivos desta semana"
+				+ "<a href = \"/swagger-ui/\">SWAGGER</a>"
 				+ "<br><br>Obrigada por me visitar!<br><br>"
 				+ "<img src=\"https://pbs.twimg.com/media/D5A07V0WkAAINmh.jpg\">";
 	}
