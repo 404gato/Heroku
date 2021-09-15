@@ -1,5 +1,6 @@
 package org.generation.BlogPessoal.controller;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.generation.BlogPessoal.model.Usuario;
@@ -20,6 +21,18 @@ public class UsuarioController {
 	@Autowired
 	private UsuarioRepository repository;
 	
+	@GetMapping("/todes")
+	public ResponseEntity<List<Usuario>> pegarTodes() {
+		List<Usuario> objetoLista = repository.findAll();
+
+		if (objetoLista.isEmpty()) {
+			return ResponseEntity.status(204).build();
+		} else {
+			return ResponseEntity.status(200).body(objetoLista);
+		}
+
+	}
+	
 	@GetMapping("/usuario/{usuario}")
     public ResponseEntity<Optional<Usuario>> getByUsuario (@PathVariable(value = "usuario") String usuario){
         Optional<Usuario> objetoUsuarios = repository.findByUsuarioContainingIgnoreCase(usuario);
@@ -29,5 +42,16 @@ public class UsuarioController {
             return ResponseEntity.status(200).body(objetoUsuarios);
         }
     }
+	
+	@GetMapping("/usuario/{id}")
+	public ResponseEntity<Usuario> buscarPorId(@PathVariable(value = "id") long id) {
+		Optional<Usuario> objetoUsuario = repository.findById(id);
+
+		if (objetoUsuario.isPresent()) {
+			return ResponseEntity.status(200).body(objetoUsuario.get());
+		} else {
+			return ResponseEntity.status(204).build();
+		}
+	}
 
 }
